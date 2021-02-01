@@ -24,5 +24,5 @@ fi
 INFILE=$(sed -n ${N}p $SAMPLEFILE)
 
 if [ ! -f $ASMDIR/${INFILE}.$DBNAME/scaffolds.fasta ]; then
-  spades.py -m $MEM -t $CPU --trusted-contigs $DB -o $ASMDIR/${INFILE}.$DBNAME --merged $EXTRACT/${INFILE}.$DBNAME.pe.fq  -s $EXTRACT/${INFILE}.$DBNAME.s.fq
+  spades.py --isolate -m $MEM -t $CPU --trusted-contigs $DB -o $ASMDIR/${INFILE}.$DBNAME --merged $EXTRACT/${INFILE}.$DBNAME.pe.fq  -s $EXTRACT/${INFILE}.$DBNAME.s.fq
 fi

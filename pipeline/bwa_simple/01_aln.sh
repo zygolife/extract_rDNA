@@ -4,6 +4,11 @@
 module load samtools
 module load bwa
 
+CPU=$SLURM_CPUS_ON_NODE
+if [ -z $CPU ]; then
+  CPU=1
+fi
+
 SAMPLEFILE=samples.csv
 DB=db/Coemansia_rDNA.fasta
 DBNAME=$(basename $DB .fasta)
@@ -13,7 +18,7 @@ INDIR=input
 OUTDIR=aln
 EXTRACT=extracted
 mkdir -p $OUTDIR $EXTRACT
-CPU=$SLURM_CPUS_ON_NODE
+
 N=${SLURM_ARRAY_TASK_ID}
 
 if [ -z $N ]; then
