@@ -9,7 +9,12 @@ if [ -z $CPU ]; then
   CPU=1
 fi
 module load ncbi-blast/2.9.0+
+module load ragtag
+source activate ragtag
+
 INDIR=asm
+OUTDIR=asm_scaf
+mkdir -p $OUTDIR
 DB=db/Coemansia_rDNA.fasta
 if [ ! -s $DB.nsq ]; then
   makeblastdb -dbtype nucl -in $DB -parse_seqids
@@ -32,4 +37,7 @@ do
       continue
     fi
   fi
+  pushd $OUTDIR
+  ragtag.py scaffold -u -o ${sp} ../db/Coemansia_rDNA.consensi.fasta ../$QFILE
+  popd
 done
