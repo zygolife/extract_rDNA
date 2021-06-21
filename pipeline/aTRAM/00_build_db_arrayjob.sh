@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-#SBATCH --out logs/aTRAM_build.%a.log -N 1 -n 4 --mem 4gb -p short
+#SBATCH --out logs/aTRAM_build.%a.log -N 1 -n 8 --mem 8gb -p intel
 
 module load atram
 CPU=$SLURM_CPUS_ON_NODE
